@@ -1,21 +1,19 @@
-<?php 
+<?php
 
-    session_start();
-    include "fileFunctions.php";
-    $users = getUsersFromFile("users.json");
+session_start();
+include 'connectDB.php';
+include "databaseFunctions.php";
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-    foreach($users as $user){
-        if($user['username'] == $username && $user['password'] == $password){
-            $_SESSION['user'] = $user;
-            $_SESSION['loggedIn'] = true;
-            header("location:index.php");
-            exit;
-        }
-    }
+if ($user = findUserByUsernameAndPassword($username, $password)) {
+    $_SESSION['loggedIn'] = true;
+    $_SESSION['user'] = $user;
 
-    header("location:login.php?msg=wrongCredentials");
+    header('location:index.php?msg=welcome');
     exit;
-?>
+}
+
+header("location:login.php?msg=wrongCredentials");
+exit;

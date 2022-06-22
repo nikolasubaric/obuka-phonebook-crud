@@ -1,5 +1,7 @@
 <?php 
 
+// file functions for CRUD
+
 function getContactsFromFile($filename = "database.json"){
     $rawData = file_get_contents($filename);
     if($rawData == "") $rawData = "[]";
@@ -47,5 +49,3 @@ function findContactById($id){
     }
     return false;
 }
-
-?>
