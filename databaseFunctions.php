@@ -100,19 +100,50 @@ function getCities()
   return mysqli_query($db_connection, $sql);
 }
 
-function getCitiesByNumberOfContacts()
+function getCitiesByNumberOfContacts($searchTerm = "")
 {
   global $db_connection;
-  $sql = "SELECT t1.*, IFNULL(num, 0) AS no_contacts, countries.name AS country_name FROM cities as t1 LEFT JOIN (SELECT cities.* ,count(contacts.city_id) as num FROM contacts INNER JOIN cities ON contacts.city_id = cities.id JOIN countries ON cities.country_id = countries.id GROUP BY contacts.city_id) as t2 on t1.id = t2.id JOIN countries ON t1.country_id = countries.id;";
+  $sql = "SELECT t1.*, IFNULL(num, 0) AS no_contacts, countries.name AS country_name 
+          FROM cities as t1 
+          LEFT JOIN (
+            SELECT cities.* ,count(contacts.city_id) as num 
+            FROM contacts 
+            INNER JOIN cities ON contacts.city_id = cities.id 
+            JOIN countries ON cities.country_id = countries.id
+            GROUP BY contacts.city_id
+            ) as t2 on t1.id = t2.id 
+          JOIN countries ON t1.country_id = countries.id";
+
+  if ($searchTerm != "") {
+    $term = strtolower($searchTerm);
+    $sql .= " WHERE lower(t1.name) LIKE '%$term%';";
+  }
+
   return mysqli_query($db_connection, $sql);
 }
 
-function getCountriesByNumberOfCities()
+// function getCountriesByNumberOfCities()
+// {
+//   global $db_connection;
+//   $sql = "SELECT countries.*, COUNT(cities.id) AS no_cities FROM countries LEFT JOIN cities ON countries.id = cities.country_id GROUP BY countries.id;";
+//   return mysqli_query($db_connection, $sql);
+// }
+
+function getCountriesByNumberOfCities($searchTerm = "")
 {
   global $db_connection;
-  $sql = "SELECT countries.*, COUNT(cities.id) AS no_cities FROM countries LEFT JOIN cities ON countries.id = cities.country_id GROUP BY countries.id;";
+  $sql = "SELECT countries.*, COUNT(cities.id) AS no_cities FROM countries LEFT JOIN cities ON countries.id = cities.country_id";
+
+  if ($searchTerm != "") {
+    $term = strtolower($searchTerm);
+    $sql .= " WHERE lower(countries.name) like '%$term%'";
+  }
+
+  $sql .= " GROUP BY countries.id;";
   return mysqli_query($db_connection, $sql);
 }
+
+// SELECT countries.*, COUNT(cities.id) AS no_cities FROM countries LEFT JOIN cities ON countries.id = cities.country_id WHERE lower(countries.name) like '%ved%' GROUP BY countries.id;
 
 function saveCityToDatabase($name, $country_id)
 {

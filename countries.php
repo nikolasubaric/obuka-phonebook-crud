@@ -9,7 +9,15 @@ if (!$_SESSION['loggedIn']) {
   exit;
 }
 
-$countries = getCountriesByNumberOfCities();
+$searchTerm = "";
+if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
+  $searchTerm = $_GET['searchTerm'];
+  $countries = getCountriesByNumberOfCities($_GET['searchTerm']);
+} else {
+  $countries = getCountriesByNumberOfCities();
+}
+
+
 
 
 ?>
@@ -73,6 +81,11 @@ $countries = getCountriesByNumberOfCities();
 
 
         <div class="disabled-notif p-1">Drzave sa gradovima ne mogu biti obrisane!</div>
+
+        <form action="countries.php" method="GET">
+          <input type="text" value="<?= $searchTerm ?>" name="searchTerm" placeholder="Pretraga" class="form-control my-3">
+        </form>
+
         <table class="table table-hover">
 
           <thead>
