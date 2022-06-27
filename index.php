@@ -32,10 +32,26 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
 
 <body>
 
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid flex-row-reverse">
+            <div class="row d-flex ">
+                <div class="col">
+                    <a href='index.php' class="navbar-brand">Kontakti</a>
+                </div>
+                <div class="col">
+                    <a href='cities.php' class="navbar-brand">Gradovi</a>
+                </div>
+                <div class="col">
+                    <a href='countries.php' class="navbar-brand">Drzave</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
 
         <div class="row mt-5">
-            <div class="col-9">
+            <div class="col-sm-12 col-lg-9 col-12">
 
                 <form action="index.php" method="GET">
                     <input type="text" value="<?= $searchTerm ?>" name="searchTerm" placeholder="Pretraga" class="form-control my-3">
@@ -74,10 +90,10 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
                                     <td>$city_name</td>
                                     <td>$country_name</td>
                                     <td>
-                                        <a href='edit.php?id=$id' >izmjena</a>
+                                        <a href='edit.php?id=$id' >Izmjeni</a>
                                     </td>
                                     <td>
-                                        <a href='deleteContact.php?id=$id' >brisanje</a>
+                                        <a href='deleteContact.php?id=$id' >Obrisi</a>
                                     </td>
                                 </tr>";
                     }
@@ -85,7 +101,7 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
                     ?>
                 </table>
             </div>
-            <div class="col-3">
+            <div class="col-sm-12 col-lg-3 col-12">
                 <h3>Dodavanje novog kontakta</h3>
                 <form action="saveContact.php" method="POST">
                     <input type="text" required class="mt-3 form-control" name="first_name" placeholder="Unesite ime...">

@@ -1,0 +1,8 @@
+.disabled {
+  background-color: rgb(213, 213, 213);
+}
+
+.disabled-notif {
+  background-color: rgb(171, 158, 158);
+  border-radius: 5px;
+}
