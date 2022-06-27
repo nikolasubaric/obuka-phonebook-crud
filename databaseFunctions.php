@@ -122,12 +122,7 @@ function getCitiesByNumberOfContacts($searchTerm = "")
   return mysqli_query($db_connection, $sql);
 }
 
-// function getCountriesByNumberOfCities()
-// {
-//   global $db_connection;
-//   $sql = "SELECT countries.*, COUNT(cities.id) AS no_cities FROM countries LEFT JOIN cities ON countries.id = cities.country_id GROUP BY countries.id;";
-//   return mysqli_query($db_connection, $sql);
-// }
+
 
 function getCountriesByNumberOfCities($searchTerm = "")
 {
@@ -143,7 +138,6 @@ function getCountriesByNumberOfCities($searchTerm = "")
   return mysqli_query($db_connection, $sql);
 }
 
-// SELECT countries.*, COUNT(cities.id) AS no_cities FROM countries LEFT JOIN cities ON countries.id = cities.country_id WHERE lower(countries.name) like '%ved%' GROUP BY countries.id;
 
 function saveCityToDatabase($name, $country_id)
 {

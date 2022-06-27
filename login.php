@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Phonebook - login</title>
 </head>
+
 <body>
-    
+
     <div class="container">
 
         <div class="row mt-5">
+
             <div class="col-6 offset-3">
                 <h3 class="text-center">Prijava</h3>
                 <form action="tryLogin.php" method="POST">
@@ -28,4 +31,5 @@
     <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -9,7 +9,15 @@ if (!$_SESSION['loggedIn']) {
   exit;
 }
 
-$cities = getCitiesByNumberOfContacts();
+
+$searchTerm = "";
+if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
+  $searchTerm = $_GET['searchTerm'];
+  $cities = getCitiesByNumberOfContacts($_GET['searchTerm']);
+} else {
+  $cities = getCitiesByNumberOfContacts();
+}
+
 
 
 ?>
@@ -27,10 +35,7 @@ $cities = getCitiesByNumberOfContacts();
 </head>
 
 <body>
-  <!-- Button trigger modal -->
-  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button> -->
+
 
 
   <!-- Modal -->
@@ -70,9 +75,15 @@ $cities = getCitiesByNumberOfContacts();
 
     <div class="row mt-5">
       <div class="offset-lg-2 col-lg-8 offset-sm-0 col-sm-12">
+        <h3>Gradovi</h3>
 
 
         <div class="disabled-notif p-1">Gradovi sa kontaktima ne mogu biti obrisani!</div>
+
+        <form action="cities.php" method="GET">
+          <input type="text" value="<?= $searchTerm ?>" name="searchTerm" placeholder="Pretraga" class="form-control my-3">
+        </form>
+
         <table class="table table-hover">
 
           <thead>
@@ -111,13 +122,9 @@ $cities = getCitiesByNumberOfContacts();
                                     </td>
                                 </tr>";
           }
-          // <a href='editCity.php?id=$id' $disabled >Izmjeni</a>
-          // <a href='deleteCity.php?id=$id' $disabled >Obrisi</a>
-
 
           ?>
-          <!-- window.location.href=\"editCity.php?id=$id\" -->
-          <!-- window.location.href=\"deleteCity.php?id=$id\" -->
+
         </table>
 
       </div>

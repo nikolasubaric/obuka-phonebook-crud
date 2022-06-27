@@ -18,8 +18,6 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
 }
 
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,10 +33,7 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
 </head>
 
 <body>
-  <!-- Button trigger modal -->
-  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button> -->
+
 
 
   <!-- Modal -->
@@ -78,6 +73,7 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
 
     <div class="row mt-5">
       <div class="offset-lg-2 col-lg-8 offset-sm-0 col-sm-12">
+        <h3>Drzave</h3>
 
 
         <div class="disabled-notif p-1">Drzave sa gradovima ne mogu biti obrisane!</div>
@@ -105,7 +101,7 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
             $no_cities = $country['no_cities'];
             $id = $country['id'];
             $disabled = '';
-            // NAPRAVITI NOVU FUNKCIJU ZA COUNTRY MODAL TODO
+
             $canBeDeleted = 'countryDeleteModal(' . $id . ')';
             if ($no_cities > 0) {
               $disabled = "disabled";
@@ -124,13 +120,9 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
                                     </td>
                                 </tr>";
           }
-          // <a href='editCity.php?id=$id' $disabled >Izmjeni</a>
-          // <a href='deleteCity.php?id=$id' $disabled >Obrisi</a>
-
 
           ?>
-          <!-- window.location.href=\"editCity.php?id=$id\" -->
-          <!-- window.location.href=\"deleteCity.php?id=$id\" -->
+
         </table>
 
       </div>

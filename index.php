@@ -52,6 +52,7 @@ if (isset($_GET['searchTerm']) && $_GET['searchTerm'] != "") {
 
         <div class="row mt-5">
             <div class="col-sm-12 col-lg-9 col-12">
+                <h3>Kontakti</h3>
 
                 <form action="index.php" method="GET">
                     <input type="text" value="<?= $searchTerm ?>" name="searchTerm" placeholder="Pretraga" class="form-control my-3">
